@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Hourly Forecast{% endblock %}
+{% block content %}
+<h1>Weather Hourly Forecast</h1>
+<div class="container">
+    <table border="1" align="center">
+        <tr>
+            <th>StartTime</th>
+            <th>EndTime</th>
+            <th>icon</th>
+            <th>Temperature</th>
+            <th>WindSpeed</th>
+            <th>WindDirection</th>
+            <th>ShortForecast</th>
+            <th>RelativeHumidity</th>
+            <th>Precipitation</th>
+            <th>Dewpoint</th>
+        </tr>
+        {% for forecast in forecasts %}
+        <tr>
+            <td>{{ forecast['startTime'] }}</td>
+            <td>{{ forecast['endTime'] }}</td>
+            <td><img src={{ forecast['icon'] }} alt=""></td>
+            <td>{{ forecast['temperature'] }}{{ forecast['temperatureUnit'] }}</td>
+            <td>{{ forecast['windSpeed'] }}</td>
+            <td>{{ forecast['windDirection'] }}</td>
+            <td>{{ forecast['shortForecast'] }}</td>
+            <td>{{ forecast['relativeHumidity']['value'] }}</td>
+            <td>{{ forecast['probabilityOfPrecipitation']['value'] }}</td>
+            <td>{{ forecast['dewpoint']['value'] * 1.8 + 32 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

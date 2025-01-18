@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Daily Forecast{% endblock %}
+{% block content %}
+<h1>Weather Daily Forecast</h1>
+<div class="container">
+    <table border="1" align="center">
+        <tr>
+            <th>Name</th>
+            <th>icon</th>
+            <th>Precipitation</th>
+            <th>WindSpeed</th>
+            <th>WindDirection</th>
+            <th>Short Forecast</th>
+            <th>Detailed Forecast</th>
+        </tr>
+        {% for forecast in forecasts %}
+        <tr>
+            <td>{{ forecast['name'] }}</td>
+            <td><img src={{ forecast['icon'] }} alt=""></td>
+            <td>{{ forecast['probabilityOfPrecipitation']['value'] }}</td>
+            <td>{{ forecast['windSpeed'] }}</td>
+            <td>{{ forecast['windDirection'] }}</td>
+            <td>{{ forecast['shortForecast'] }}</td>
+            <td>{{ forecast['detailedForecast'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
